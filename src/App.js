@@ -1,8 +1,9 @@
 
 import './App.css';
-import Encabezamiento from './components/compartidos/header'
+import Encabezamiento from './components/compartidos/encabezamiento'
 import Principal from './components/compartidos/principal'
-import Footer from './components/compartidos/footer';
+import Footer from './components/compartidos/pie';
+
 
 function App() {
   return (

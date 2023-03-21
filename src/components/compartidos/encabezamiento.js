@@ -8,7 +8,7 @@ import {ReactComponent as Perfil} from '../img/icono.svg';
 function Encabezamiento() {
   return (
 
-  <div className='header  '>
+  <header className='header  '>
     <div className="contenedor" > 
        <Logo className='icono'/>
        <a href='/' className='titulo'>Metas App</a>
@@ -19,7 +19,7 @@ function Encabezamiento() {
          <Perfil className='icono'></Perfil>
 </a>
   </nav>
-  </div>
+  </header>
   
   );
 }

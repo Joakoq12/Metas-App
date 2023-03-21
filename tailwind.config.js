@@ -6,11 +6,11 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        DEFAULT: '1rem',
-        sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
-        '2xl': '6rem',
+        sm: "8px",
+        md: "16px",
+        lg: "24px",
+        xl: "48px",
+        principal: "64px",
       },
     },
   },
