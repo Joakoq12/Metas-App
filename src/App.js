@@ -5,7 +5,7 @@ import Principal from './components/compartidos/principal'
 import Footer from './components/compartidos/pie';
 import Meta from './components/lista/Meta';
 import Lista from './components/lista/Lista';
-
+import Detalles from './components/nueva/Detalles'
 
 function App() {
   return (
@@ -13,10 +13,8 @@ function App() {
         
         <Encabezado></Encabezado>
         <Principal>
-            <Lista></Lista>
-          
-
-      
+            {/*<Lista></Lista>*/}
+            <Detalles></Detalles>
           </Principal>
         <Footer></Footer>
        
