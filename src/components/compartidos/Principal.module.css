@@ -2,6 +2,7 @@
 
 .principal {
     height: calc(100vh - theme('height.principal'));
+    @apply flex;
 }
 
 
@@ -11,7 +12,7 @@
 }
 
 .main { 
-    @apply w-full h-full overflow-scroll;
+    @apply w-full h-full overflow-scroll text-right;
       
 }
 

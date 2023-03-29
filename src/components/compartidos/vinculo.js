@@ -1,11 +1,11 @@
+import estilos from './vinculo.module.css'
 
-
-function Vinculo({children, text, href}) {
+function Vinculo({Icono, text, href}) {
     return ( 
-        <a href={href} className='vinculo'>
+        <a href={href} className={estilos.vinculo}>
              
-             {children}
-             <span>{text}</span>
+             <Icono className={estilos.icono}></Icono>
+             {text && <span className={estilos.texto}>{text}</span> }
         </a>
 
 

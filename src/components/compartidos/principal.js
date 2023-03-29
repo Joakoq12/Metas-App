@@ -24,7 +24,7 @@ function Principal({children}) {
     />
   
  </aside>
- <main className='main'>
+ <main className={estilos.main}>
     {children}
  </main>
 </div>
