@@ -1,47 +1,61 @@
+import estilos from './Detalles.module.css'
+
+
+
 function Detalles() {
 
     const opcionesDeFrencuencia = ['dia', 'semana', 'mes', 'año'];
 
-    const emoji = ['✈️, 📚, 🏃, 💰, 🖥️ ']
+    const emoji = ['✈️, 📚, 🏃, 💰, 🖥️ '];
 
     return (
 
-        <div>
-            <form>
-                <label>
+        <div className="tarjeta text-left">
+            <form className="p-4">
+                <label className="label">
                     Describe tu meta
-                    <input placeholder="ej.52 caminatas">
+                    <input className="input" placeholder="ej.52 caminatas">
                     </input>
                 </label>
 
-                <label>
+                <label className="label">
                     ¿ Con que frecuencia deseas cumplir tu meta ?
                     <span>ej. 1 vez a la semana</span>
-                    <div><input type='number'></input>
-                        <select>
+                    <div className='flex mb-6'>
+                        <input className="input mr-6" type='number'></input>
+                        <select className="input">
                             {opcionesDeFrencuencia.map(opcion => <option value={opcion}>{opcion}</option>)}
                         </select> </div>
                 </label>
 
-                <label>
+                <label className="label">
                     ¿Cuantas veces deseas completar esta meta?
-                    <input type='number'></input>
+                    <input className="input" type='number' placeholder='Insert a number'></input>
                 </label>
 
-                <label>
+                <label className="label">
                     ¿Tienes una fecha limite?
-                    <input type='date'></input>
+                    <input className='input' type='date'></input>
                 </label>
 
-
-                <label>Escoge un icono para la meta
-                    <select>{emoji.map(seleccionar => <option value={seleccionar}>{seleccionar}</option>)}</select>
+                <label className='label'>
+                ¿Cuantas veces has completado ya esta meta?
+                <input className='input' type='number' placeholder='Insert a number'></input>
                 </label>
 
-                <div>
-                    <button>Crear</button>
-                    <button>Cancelar</button>
-                    </div>
+                  
+                <label className="label">Escoge un icono para la meta
+                    <select className="input">
+                    {emoji.map(opcion => <option value={opcion}>{opcion}</option>)}
+                    </select>
+                </label>
+
+                </form>
+
+                <div className={estilos.botones}>
+                    <button className="boton boton--negro">Crear</button>
+                    <button className="boton boton--gris">Cancelar</button>
+                </div>
 
 
 
@@ -54,7 +68,7 @@ function Detalles() {
 
 
 
-            </form>
+          
             <div></div>
         </div>
 
