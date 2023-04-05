@@ -1,63 +1,139 @@
-import estilos from './Detalles.module.css'
+import { useEffect, useState } from 'react';
+import estilos from './Detalles.module.css';
 
 
 
 function Detalles() {
 
+    const [form, setForm] = useState({
+        detalles: '',
+        eventos: 1,
+        periodo: 'semana',
+        icono: '🏃',
+        meta: 52,
+        plazo: '2030-01-01',
+        completado: 0,
+    });
+
+    const { detalles, eventos, periodo, icono, meta, plazo, completado } = form;
+
+    const onChange = (event, prop) => {
+        setForm(estado => ({...estado, [prop] : event.target.value}));
+      
+    };
+
+    useEffect(() => {
+        //console.log(form);
+    }, [form])
+
+    const crear = async () => {
+        console.log(form);
+    }
+     
+
+
+
     const opcionesDeFrencuencia = ['dia', 'semana', 'mes', 'año'];
 
-    const emoji = ['✈️, 📚, 🏃, 💰, 🖥️ '];
+    const emoji = ['✈️', '📚', '🏃', '💰', '🖥️ '];
 
     return (
 
-        <div className="tarjeta text-left">
-            <form className="p-4">
-                <label className="label">
+        <div
+            className="tarjeta text-left">
+            <form
+                className="p-4">
+                <label
+                    className="label">
                     Describe tu meta
-                    <input className="input" placeholder="ej.52 caminatas">
+                    <input
+                        className="input"
+                        placeholder="ej.52 caminatas"
+                        value={detalles}
+                        onChange={e => onChange(e, 'detalles')}
+                    >
                     </input>
                 </label>
 
-                <label className="label">
+                <label
+                    className="label">
                     ¿ Con que frecuencia deseas cumplir tu meta ?
                     <span>ej. 1 vez a la semana</span>
-                    <div className='flex mb-6'>
-                        <input className="input mr-6" type='number'></input>
-                        <select className="input">
+                    <div
+                        className='flex mb-6'>
+                        <input
+                            className="input mr-6"
+                            type='number'
+                            value={eventos}
+                            onChange={e => onChange(e, 'eventos')}>
+
+                        </input>
+                        <select className="input"
+                            value={periodo}
+                            onChange={e => onChange(e, 'periodo')}>
+
+
                             {opcionesDeFrencuencia.map(opcion => <option value={opcion}>{opcion}</option>)}
-                        </select> </div>
+                        </select>
+                    </div>
                 </label>
 
-                <label className="label">
+                <label
+                    className="label">
                     ¿Cuantas veces deseas completar esta meta?
-                    <input className="input" type='number' placeholder='Insert a number'></input>
+                    <input
+                        className="input"
+                        type='number'
+                        placeholder='Insert a number'
+                        onChange={e => onChange(e, 'meta')}
+                        value={meta}
+                    >
+
+                    </input>
                 </label>
 
-                <label className="label">
+                <label
+                    className="label">
                     ¿Tienes una fecha limite?
-                    <input className='input' type='date'></input>
+                    <input
+                        className='input'
+                        type='date'
+                        value={plazo}
+                        onChange={e => onChange(e, 'plazo')}>
+                    </input>
                 </label>
 
-                <label className='label'>
-                ¿Cuantas veces has completado ya esta meta?
-                <input className='input' type='number' placeholder='Insert a number'></input>
+                <label
+                    className='label'>
+                    ¿Cuantas veces has completado ya esta meta?
+                    <input
+                        className='input'
+                        type='number'
+                        placeholder='Insert a number'
+                        value={completado}
+                        onChange={e => onChange(e, 'completado')}
+                        >
+                    </input>
                 </label>
 
-                  
-                <label className="label">Escoge un icono para la meta
-                    <select className="input">
-                    {emoji.map(opcion => <option value={opcion}>{opcion}</option>)}
+
+                <label
+                    className="label">
+                    Escoge un icono para la meta
+                    <select
+                        className="input"
+                        value={icono}
+                        onChange={e => onChange(e, 'icono')}>
+                        {emoji.map(opcionIcono => <option value={opcionIcono}>{opcionIcono}</option>)}
                     </select>
                 </label>
 
-                </form>
+            </form>
 
-                <div className={estilos.botones}>
-                    <button className="boton boton--negro">Crear</button>
-                    <button className="boton boton--gris">Cancelar</button>
-                </div>
-
-
+            <div className={estilos.botones}>
+                <button className="boton boton--negro" onClick={crear}>Crear</button>
+                <button className="boton boton--gris">Cancelar</button>
+            </div>
 
 
 
@@ -68,7 +144,9 @@ function Detalles() {
 
 
 
-          
+
+
+
             <div></div>
         </div>
 

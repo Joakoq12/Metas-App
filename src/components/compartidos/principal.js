@@ -16,6 +16,7 @@ function Principal({children}) {
     text='Lista de Metas'
     Icono={Lista} />
       
+      
     <Vinculo 
     href='/crear' 
     text='Nuevas Metas'
