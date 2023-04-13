@@ -12,13 +12,13 @@ function Principal({children}) {
  <aside className={estilos.aside}> 
 
     <Vinculo 
-    href='/lista' 
+    to='/lista' 
     text='Lista de Metas'
     Icono={Lista} />
       
       
     <Vinculo 
-    href='/crear' 
+    to='/nueva' 
     text='Nuevas Metas'
     Icono={Nueva}
     

@@ -17,7 +17,7 @@ function Encabezamiento() {
 
       <nav >
         <Vinculo
-          href='/perfil'
+          to='/perfil'
           Icono={Perfil} />
 
 

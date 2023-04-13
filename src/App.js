@@ -1,24 +1,32 @@
 
 import './App.css';
-import Encabezado from './components/compartidos/encabezado'
-import Principal from './components/compartidos/principal'
-import Footer from './components/compartidos/pie';
-import Meta from './components/lista/Meta';
+import Layout from './components/compartidos/Layout'
 import Lista from './components/lista/Lista';
 import Detalles from './components/nueva/Detalles'
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
+    
         
-        <Encabezado></Encabezado>
+
+        <Routes>
+                <Route path='/' element={<Layout />} >
+                 <Route index element={<Lista />} />
+                 <Route path='/lista' element={<Lista />} />
+                 <Route path='/nueva' element={<Detalles />} />
+                </Route>
+         { /* <1div className="App">
+          
+          /*<Encabezado></Encabezado>
         <Principal>
-            {/*<Lista></Lista>*/}
+            <Lista></Lista>
             <Detalles></Detalles>
           </Principal>
         <Footer></Footer>
-       
-    </div>
+  </div>*/}
+   
+    </Routes>
   );
 }
 
