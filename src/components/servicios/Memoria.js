@@ -32,22 +32,58 @@ const listaMock = [{
 }];
 
 const estadoInicial = {
-  orden: [] , 
+  orden: [],
   objeto: {},
 
 };
 
+function reductor(estado, accion) {
+  switch (accion.tipo) {
+    case 'colocar': {
+      const metas = accion.metas;
+      const nuevoEstado = {
+        orden: metas.map(meta => meta.id),
+        objetos: metas.reduce((objeto, meta) => ({ ...objeto, [meta.id]: meta }), {})
+      }
+      return nuevoEstado;
+
+    };
+
+      case 'crear': {
+            const id = Math.random();
+            const nuevoEstado = {
+              orden: [...estado.orden, id], 
+              objetos: {
+                  ...estado.objetos, 
+              [id] : accion.meta                  
+
+              }
+          };
+          console.log(nuevoEstado)
+          return nuevoEstado;
+
+   
+        };
+       
+
+    }
+
+
+  }
+
+const metas = reductor(estadoInicial, {tipo: 'colocar', metas: listaMock  })
+
 export const Contexto = createContext(null);
 
 function Memoria({ children }) {
-  const [estado, dispatch] = useReducer(reductor, estadoInicial);
-    return (
-      <Contexto.Provider value={[estado, dispatch] }>
-        {children}
+  const [estado, dispatch] = useReducer(reductor, metas);
+  return (
+    <Contexto.Provider value={[estado, dispatch]}>
+      {children}
 
-      </Contexto.Provider>
-    );
+    </Contexto.Provider>
+  );
 }
 
-export default Memoria 
-;
+export default Memoria
+  ; 

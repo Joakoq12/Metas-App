@@ -10,12 +10,12 @@ import Meta from './Meta';
 
 function Lista() {
 
-    const metas = useContext(Contexto);
-    console.log(metas) 
+    const [estado, dispatch] = useContext(Contexto);
+    //console.log(metas) 
 
-    return (
+    return ( 
 
-        metas.map(meta => <Meta key={meta.id} {...meta}></Meta>)
+        estado.orden.map(id => <Meta key={id} {...estado.objetos[id]}></Meta>)
 
     );
 }

@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import estilos from './Detalles.module.css';
+import { Contexto } from '../servicios/Memoria';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -15,6 +17,9 @@ function Detalles() {
         completado: 0,
     });
 
+    const [estado, dispatch] = useContext(Contexto);
+
+
     const { detalles, eventos, periodo, icono, meta, plazo, completado } = form;
 
     const onChange = (event, prop) => {
@@ -27,9 +32,11 @@ function Detalles() {
     }, [form])
 
     const crear = async () => {
-        console.log(form);
+            dispatch({tipo: 'crear', meta: form}); 
+            navegar ( '/lista'); 
     }
      
+    const navegar = useNavigate ( );
 
 
 
