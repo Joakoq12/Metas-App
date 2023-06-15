@@ -2,6 +2,7 @@
 import { useContext } from 'react';
 import {Contexto} from '../../components/servicios/Memoria'
 import Meta from './Meta';
+import { Outlet } from 'react-router-dom';
 
 
 
@@ -15,8 +16,13 @@ function Lista() {
 
     return ( 
 
-        estado.orden.map(id => <Meta key={id} {...estado.objetos[id]}></Meta>)
+        <>
 
+        {estado.orden.map(id => <Meta key={id} {...estado.objetos[id]}></Meta>)}
+
+        <Outlet></Outlet>
+
+        </>
     );
 }
 

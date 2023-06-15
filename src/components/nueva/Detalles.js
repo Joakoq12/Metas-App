@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import estilos from './Detalles.module.css';
 import { Contexto } from '../servicios/Memoria';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
 function Detalles() {
+
+    const { id } = useParams();
 
     const [form, setForm] = useState({
         detalles: '',
@@ -28,12 +30,20 @@ function Detalles() {
     };
 
     useEffect(() => {
-        //console.log(form);
-    }, [form])
+        const metaMemoria = estado.objetos[id];
+        if (!metaMemoria) {
+            return navegar('/lista');
+        }
+        setForm(metaMemoria);
+    }, [id])
 
     const crear = async () => {
             dispatch({tipo: 'crear', meta: form}); 
             navegar ( '/lista'); 
+    }
+
+    const cancelar = async () => {
+        navegar ('/lista');
     }
      
     const navegar = useNavigate ( );
@@ -139,12 +149,13 @@ function Detalles() {
 
             <div className={estilos.botones}>
                 <button className="boton boton--negro" onClick={crear}>Crear</button>
-                <button className="boton boton--gris">Cancelar</button>
+                <button className="boton boton--gris"
+                  onClick = {cancelar}>Cancelar</button>
             </div>
 
 
 
-
+    
 
 
 
@@ -157,7 +168,7 @@ function Detalles() {
             <div></div>
         </div>
 
-
+      
 
 
     );
