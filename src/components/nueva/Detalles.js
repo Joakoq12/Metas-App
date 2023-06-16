@@ -25,28 +25,43 @@ function Detalles() {
     const { detalles, eventos, periodo, icono, meta, plazo, completado } = form;
 
     const onChange = (event, prop) => {
-        setForm(estado => ({...estado, [prop] : event.target.value}));
-      
+        setForm(estado => ({ ...estado, [prop]: event.target.value }));
+
     };
 
     useEffect(() => {
         const metaMemoria = estado.objetos[id];
+        if (!id) {
+            return;
+        }
+
+
         if (!metaMemoria) {
             return navegar('/lista');
         }
         setForm(metaMemoria);
     }, [id])
 
-    const crear = async () => {
-            dispatch({tipo: 'crear', meta: form}); 
-            navegar ( '/lista'); 
+    const crear =  () => {
+        dispatch({ tipo: 'crear', meta: form });
+        navegar('/lista');
     }
 
-    const cancelar = async () => {
-        navegar ('/lista');
+    const borrar =  () => {
+        dispatch({ tipo: 'borrar', id });
+        navegar('/lista');
     }
-     
-    const navegar = useNavigate ( );
+
+    const actualizar =  () => {
+        dispatch({ tipo: 'actualizar', meta: form });
+        navegar('/lista');
+    }
+
+    const cancelar = () => {
+        navegar('/lista');
+    }
+
+    const navegar = useNavigate();
 
 
 
@@ -129,7 +144,7 @@ function Detalles() {
                         placeholder='Insert a number'
                         value={completado}
                         onChange={e => onChange(e, 'completado')}
-                        >
+                    >
                     </input>
                 </label>
 
@@ -148,14 +163,16 @@ function Detalles() {
             </form>
 
             <div className={estilos.botones}>
-                <button className="boton boton--negro" onClick={crear}>Crear</button>
+                {!id && <button className="boton boton--negro" onClick={crear}>Crear</button>}
+                {id &&<button className="boton boton--negro" onClick={actualizar}>Actualizar</button>}
+                {id &&<button className="boton boton--rojo" onClick={borrar}>Borrar</button>}
                 <button className="boton boton--gris"
-                  onClick = {cancelar}>Cancelar</button>
+                    onClick={cancelar}>Cancelar</button>
             </div>
 
 
 
-    
+
 
 
 
@@ -168,7 +185,7 @@ function Detalles() {
             <div></div>
         </div>
 
-      
+
 
 
     );

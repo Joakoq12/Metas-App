@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 
+
 const listaMock = [{
   'id': '1',
   'detalles': 'Correr por 30 minutos',
@@ -49,41 +50,63 @@ function reductor(estado, accion) {
 
     };
 
-      case 'crear': {
-            const id = Math.random();
-            const nuevoEstado = {
-              orden: [...estado.orden, id], 
-              objetos: {
-                  ...estado.objetos, 
-              [id] : accion.meta                  
+    case 'crear': {
+      const id = Math.random();
+      const nuevoEstado = {
+        orden: [...estado.orden, id],
+        objetos: {
+          ...estado.objetos,
+          [id]: accion.meta
 
-              }
-          };
-          console.log(nuevoEstado)
-          return nuevoEstado;
+        }
 
-   
-        };
-       
+      };
+      console.log(nuevoEstado)
+      return nuevoEstado;
+    };
+
+    case 'actualizar': {
+      const id = accion.meta.id;
+      estado.objetos[id] = {
+        ...estado.objetos[id],
+        ...accion.meta
+      };
+      const nuevoEstado = { ...estado };
+      return nuevoEstado;
 
     }
 
+    case 'borrar': {
+      const id = accion.id;
+      const nuevoOrden = estado.orden.filter((item) => item !== id);
+      delete estado.objetos[id];
+      const nuevoEstado = {
+        orden: nuevoOrden,
+        objetos: estado.objetos
+      };
+      return nuevoEstado;
+    }
+  }}
 
+
+
+
+  export const Contexto = createContext(null);
+
+  const metas = reductor(estadoInicial, { tipo: 'colocar', metas: listaMock })
+
+
+
+  function Memoria({ children }) {
+    const [estado, dispatch] = useReducer(reductor, metas);
+    return (
+      <Contexto.Provider value={[estado, dispatch]}>
+        {children}
+
+      </Contexto.Provider>
+    );
   }
 
-const metas = reductor(estadoInicial, {tipo: 'colocar', metas: listaMock  })
+  export default Memoria;
 
-export const Contexto = createContext(null);
 
-function Memoria({ children }) {
-  const [estado, dispatch] = useReducer(reductor, metas);
-  return (
-    <Contexto.Provider value={[estado, dispatch]}>
-      {children}
-
-    </Contexto.Provider>
-  );
-}
-
-export default Memoria
-  ; 
