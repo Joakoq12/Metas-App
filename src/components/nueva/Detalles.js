@@ -105,7 +105,7 @@ function Detalles() {
                             onChange={e => onChange(e, 'periodo')}>
 
 
-                            {opcionesDeFrencuencia.map(opcion => <option value={opcion}>{opcion}</option>)}
+                            {opcionesDeFrencuencia.map(opcion => <option key={opcion}  value={opcion}>{opcion}</option>)}
                         </select>
                     </div>
                 </label>
@@ -156,7 +156,7 @@ function Detalles() {
                         className="input"
                         value={icono}
                         onChange={e => onChange(e, 'icono')}>
-                        {emoji.map(opcionIcono => <option value={opcionIcono}>{opcionIcono}</option>)}
+                        {emoji.map(opcionIcono => <option key={opcionIcono} value={opcionIcono}>{opcionIcono}</option>)}
                     </select>
                 </label>
 

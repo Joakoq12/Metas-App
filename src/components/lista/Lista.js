@@ -1,8 +1,10 @@
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import {Contexto} from '../../components/servicios/Memoria'
 import Meta from './Meta';
 import { Outlet } from 'react-router-dom';
+import {pedirMetas} from '../servicios/Pedidos'
+
 
 
 
@@ -12,7 +14,14 @@ import { Outlet } from 'react-router-dom';
 function Lista() {
 
     const [estado, dispatch] = useContext(Contexto);
-    //console.log(metas) 
+
+    useEffect(()=> {
+         const metas = pedirMetas();
+         dispatch({tipo: 'colocar', metas})
+
+
+
+    }, []);
 
     return ( 
 
