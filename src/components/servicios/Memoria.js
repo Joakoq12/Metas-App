@@ -1,3 +1,4 @@
+import React from "react";
 import { createContext, useReducer } from "react";
 
 
@@ -18,11 +19,10 @@ function reductor(estado, accion) {
     case 'colocar': {
       const metas = accion.metas;
       const nuevoEstado = {
-        orden: metas.map(meta => meta.id),
+        orden: metas.map((meta) => meta.id),
         objetos: metas.reduce((objeto, meta) => ({ ...objeto, [meta.id]: meta }), {})
       };
       //localStorage.setItem('metas', JSON.stringify(nuevoEstado))
-      
       return nuevoEstado;
 
     };
