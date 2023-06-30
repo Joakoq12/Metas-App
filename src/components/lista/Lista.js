@@ -22,7 +22,7 @@ function Lista() {
 
 
 
-    }, []);
+    }, [enviar]);
 
     return ( 
 

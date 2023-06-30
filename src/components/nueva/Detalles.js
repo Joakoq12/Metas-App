@@ -29,8 +29,12 @@ function Detalles() {
 
     };
 
+    const navegar = useNavigate();
+
+    const metaMemoria = estado.objetos[id];
+
     useEffect(() => {
-        const metaMemoria = estado.objetos[id];
+       
         if (!id) {
             return;
         }
@@ -40,7 +44,7 @@ function Detalles() {
             return navegar('/lista');
         }
         setForm(metaMemoria);
-    }, [id])
+    }, [id, metaMemoria, navegar])
 
     const crear =  () => {
         dispatch({ tipo: 'crear', meta: form });
@@ -61,7 +65,7 @@ function Detalles() {
         navegar('/lista');
     }
 
-    const navegar = useNavigate();
+   
 
 
 

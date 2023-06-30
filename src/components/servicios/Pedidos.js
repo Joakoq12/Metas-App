@@ -1,5 +1,5 @@
 export async function pedirMetas() {
-    const response = await fetch('../servicios/metas.json');
+    const response = await fetch('/metas.json');
     const metas = await response.json();
     return metas; 
 }
