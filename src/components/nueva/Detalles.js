@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import estilos from './Detalles.module.css';
 import { Contexto } from '../servicios/Memoria';
 import { useNavigate, useParams } from 'react-router-dom';
+import { crearMeta } from '../servicios/Pedidos';
 
 
 
@@ -46,8 +47,9 @@ function Detalles() {
         setForm(metaMemoria);
     }, [id, metaMemoria, navegar])
 
-    const crear =  () => {
-        dispatch({ tipo: 'crear', meta: form });
+    const crear = async () => {
+        const nuevaMeta = await crearMeta()
+        dispatch({ tipo: 'crear', meta: nuevaMeta });
         navegar('/lista');
     }
 

@@ -1,42 +1,25 @@
 
 import React from 'react';
-import { useContext, useEffect } from 'react';
-import {Contexto} from '../../components/servicios/Memoria'
 import Meta from './Meta';
 import { Outlet } from 'react-router-dom';
-import {pedirMetas} from '../servicios/Pedidos'
-
-
+import { useContext } from 'react';
+import { Contexto } from '../servicios/Memoria';
 
 
 
 
 
 function Lista() {
-
-    const [estado, enviar] = useContext(Contexto);
-
-     useEffect(()=> {
-         const metas = pedirMetas();
-         enviar({tipo: 'colocar', metas})
-
-
-
-    }, [enviar]);
-
-    return ( 
-
-        <>
-
-        {estado.orden.map(id => 
-        
-        <Meta key={id} {...estado.objetos[id]}></Meta>)}
-
-        <Outlet></Outlet>
-
-        </>
+    const [metas] = useContext(Contexto);
+  
+    return (
+      <>
+        {metas.orden.map((id) => (
+          <Meta key={id} {...metas.objetos[id]}></Meta>
+        ))}
+        <Outlet />
+      </>
     );
-}
-
-
-export default Lista;
+  }
+  
+  export default Lista;

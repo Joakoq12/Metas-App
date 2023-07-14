@@ -3,6 +3,8 @@ import { createContext, useReducer } from "react";
 
 
 
+
+
 // const memoria = localStorage.getItem('metas');
 const estadoInicial =
  //  memoria 
